@@ -76,7 +76,7 @@ export default function DocumentPreview({ file }: DocumentPreviewProps) {
   };
 
   return (
-    <div className="card border rounded-3 p-4" style={{ minHeight: "400px", backgroundColor: "#f8f9fa" }}>
+    <div className="card border rounded-3 p-4 mt-3" style={{ minHeight: "400px", backgroundColor: "#f8f9fa" }}>
       <div className="card-body d-flex flex-column align-items-center justify-content-center">
         {renderPreview()}
       </div>

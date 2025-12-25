@@ -11,6 +11,20 @@ interface TableRow {
   document: string;
 }
 
+type FilterStatus = 
+  | "en-preparation" 
+  | "en-attente-paiement" 
+  | "paiement-attente" 
+  | "cloturee" 
+  | "payee" 
+  | "livre";
+
+interface FilterBadge {
+  id: FilterStatus;
+  label: string;
+  color: "warning" | "primary" | "success" | "secondary";
+}
+
 export default function Subscription() {
   const [rows, setRows] = useState<TableRow[]>([
     {
@@ -23,9 +37,20 @@ export default function Subscription() {
     }
   ]);
 
+  const [activeFilters, setActiveFilters] = useState<FilterStatus[]>([]);
+
   const handleDeleteRow = (id: number) => {
     setRows(rows.filter(row => row.id !== id));
   };
+
+  const filters: FilterBadge[] = [
+    { id: "en-preparation", label: "En préparation", color: "warning" },
+    { id: "en-attente-paiement", label: "En attente de paiement", color: "warning" },
+    { id: "paiement-attente", label: "Paiement en attente", color: "primary" },
+    { id: "cloturee", label: "Clôturée", color: "secondary" },
+    { id: "payee", label: "Payée", color: "success" },
+    { id: "livre", label: "Livré", color: "primary" },
+  ];
 
   const handleAddRow = () => {
     const newRow: TableRow = {
@@ -51,6 +76,24 @@ export default function Subscription() {
     }
   };
 
+  const getButtonClasses = (filter: FilterBadge) => {
+    const isActive = activeFilters.includes(filter.id);
+    const baseClasses = "btn rounded-pill px-4 d-flex align-items-center gap-2";
+    
+    if (isActive) {
+      return `${baseClasses} btn-${filter.color} text-white`;
+    }
+    return `${baseClasses} btn-outline-${filter.color}`;
+  };
+
+  const toggleFilter = (filterId: FilterStatus) => {
+    setActiveFilters(prev => 
+      prev.includes(filterId)
+        ? prev.filter(f => f !== filterId)
+        : [...prev, filterId]
+    );
+  };
+
   return (
     <div className="container-fluid min-vh-100 bg-light p-0">
       <div className="row g-0 h-100">
@@ -59,8 +102,23 @@ export default function Subscription() {
         </div>
         <main className="col-md-9 col-lg-10">
           <Header title="Mes Souscriptions" />
-          <div className="bg-white shadow rounded m-3 p-4" style={{minHeight: "92%"}}>
-            <div className="d-flex justify-content-end">
+          <div className="bg-white shadow rounded m-3 p-4 mb-5" style={{minHeight: "92%"}}>
+            <div className="d-flex flex-wrap gap-2 mb-3 justify-content-between">
+              {filters.slice(0, 3).map(filter => (
+                <button
+                  key={filter.id}
+                  className={getButtonClasses(filter)}
+                  onClick={() => toggleFilter(filter.id)}
+                >
+                  <span 
+                    className={`badge bg-${filter.color} rounded-circle p-0`}
+                    style={{ width: "10px", height: "10px" }}
+                  ></span>
+                  {filter.label}
+                </button>
+              ))}
+            </div>
+            <div className="d-flex justify-content-end mb-4">
               <div className="input-group shadow-sm">
                 <span className="input-group-text bg-white border-end-0">
                   <i className="bi bi-search text-muted"></i>
