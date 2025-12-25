@@ -55,6 +55,7 @@ Copiez cette URL et collez-la dans votre navigateur pour accéder à l'applicati
 - ✅ Gestion des souscriptions
 - ✅ Formulaires multi-étapes
 - ✅ Interface responsive
+- ✅ Preuve de financement
 ```
 
 ## 📂 Structure du projet
