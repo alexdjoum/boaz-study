@@ -141,7 +141,7 @@ export default function Sidebar() {
             )}
           </div>
           <NavLink
-            to="/preuves"
+            to="/proof-of-financing"
             onClick={() => setIsMobileMenuOpen(false)}
             className={({ isActive }) =>
               `d-flex align-items-center gap-3 px-3 py-3 mb-2 rounded-3 text-decoration-none ${
