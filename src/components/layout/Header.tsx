@@ -1,10 +1,12 @@
-
-export default function Header() {
+interface HeaderProps {
+  title: string;
+}
+export default function Header({ title }: HeaderProps) {
   return (
     <div className="bg-white rounded mb-3" style={{ borderRadius: "1rem" }}>
       <div className="d-flex align-items-center p-3">
         <div className="me-auto fs-3 fw-semibold">
-          Obtenir mon AVI
+          {title}
         </div>
 
         <div className="d-flex align-items-center gap-2 me-4">

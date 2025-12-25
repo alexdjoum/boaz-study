@@ -33,7 +33,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
               boxShadow: 'none',
               borderColor: '#dee2e6'
             }}
-            required
+            // required
           >
             <option value="">2024/2025</option>
             <option value="2023/2024">2023/2024</option>
@@ -53,7 +53,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
             }}
             required
           >
-            <option value="">Non</option>
+            <option value="Non">Non</option>
             <option value="oui">Oui</option>
           </select>
         </div>
@@ -71,7 +71,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
               boxShadow: 'none',
               borderColor: '#dee2e6'
             }}
-            required
+            // required
           />
         </div>
 
@@ -87,7 +87,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
             }}
             required
           >
-            <option value="">Etudes</option>
+            <option value="Etudes">Etudes</option>
             <option value="travail">Travail</option>
             <option value="stage">Stage</option>
           </select>
@@ -102,9 +102,9 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
               boxShadow: 'none',
               borderColor: '#dee2e6'
             }}
-            required
+            // required
           >
-            <option value="">CCFR</option>
+            <option value="CCFR">CCFR</option>
             <option value="cameroun">Cameroun</option>
             <option value="senegal">Sénégal</option>
             <option value="cote-ivoire">Côte d'Ivoire</option>
@@ -122,7 +122,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
             }}
             required
           >
-            <option value="">Oui</option>
+            <option value="Oui">Oui</option>
             <option value="non">Non</option>
           </select>
         </div>
@@ -136,9 +136,9 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
               boxShadow: 'none',
               borderColor: '#dee2e6'
             }}
-            required
+            // required
           >
-            <option value="">Le motif</option>
+            {/* <option value="">Le motif</option> */}
             <option value="en-cours">En cours</option>
             <option value="termine">Terminé</option>
             <option value="en-attente">En attente</option>
@@ -156,7 +156,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
               boxShadow: 'none',
               borderColor: '#dee2e6'
             }}
-            required
+            // required
           />
         </div>
         <div className="col-12">
@@ -171,7 +171,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
               boxShadow: 'none',
               borderColor: '#dee2e6'
             }}
-            required
+            // required
           />
         </div>
         <div className="col-12">
@@ -186,7 +186,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
               boxShadow: 'none',
               borderColor: '#dee2e6'
             }}
-            required
+            // required
           />
         </div>
         <div className="col-12">
@@ -195,7 +195,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
           </label>
           <div className="position-relative">
             <input
-              type="text"
+              type="date"
               className="form-control border-0 border-bottom rounded-0 px-0"
               placeholder="jj/mm/aaa"
               style={{ 
@@ -203,7 +203,7 @@ export default function Step2Formation({ onNext, onPrev }: StepProps) {
                 boxShadow: 'none',
                 borderColor: '#dee2e6'
               }}
-              required
+              // required
             />
             <i 
               className="bi bi-calendar3 position-absolute end-0 top-50 translate-middle-y text-muted"

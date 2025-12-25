@@ -58,11 +58,19 @@ export default function Subscription() {
           <Sidebar />
         </div>
         <main className="col-md-9 col-lg-10">
-          <Header />
-          <div className="bg-white shadow rounded m-3 p-4">
-            <div className="d-flex justify-content-between">
-              <div>
-                <h2 className="mb-4">Mes Souscriptions</h2>
+          <Header title="Mes Souscriptions" />
+          <div className="bg-white shadow rounded m-3 p-4" style={{minHeight: "92%"}}>
+            <div className="d-flex justify-content-end">
+              <div className="input-group shadow-sm">
+                <span className="input-group-text bg-white border-end-0">
+                  <i className="bi bi-search text-muted"></i>
+                </span>
+                <input 
+                  type="text" 
+                  className="form-control border-start-0 ps-0" 
+                  placeholder="Rechercher..."
+                  style={{boxShadow: "none"}}
+                />
               </div>
               <div>
                 <button
@@ -161,10 +169,6 @@ export default function Subscription() {
                   ))}
                 </tbody>
               </table>
-            </div>
-            
-            <div className="d-flex justify-content-center gap-3 mt-4">
-              
             </div>
           </div>
         </main>

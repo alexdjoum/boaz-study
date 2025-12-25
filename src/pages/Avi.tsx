@@ -25,7 +25,7 @@ export default function Avi() {
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <Step1Souscription onNext={nextStep} />;
+        return <Step1Souscription onNext={nextStep} onPrev={prevStep} />;
       case 2:
         return <Step2Formation onNext={nextStep} onPrev={prevStep} />;
       case 3:
@@ -43,11 +43,10 @@ export default function Avi() {
         <Sidebar />
       </div>
       <div className="flex-grow-1">
-        <Header />
+        <Header title="Obtenir mon AVI" />
         <div className="p-4">
           <div className="bg-white shadow rounded p-4">
-            <h2 className="text-center mb-4">Parcours à suivre</h2>
-            
+            <h2 className="text-center mb-4">Parcours à suivre</h2> 
             {!started ? (
               <>
                 <Stepper steps={steps} activeStep={currentStep} />
@@ -80,7 +79,7 @@ export default function Avi() {
                       }}
                     >
                       <div 
-                        className="h-100 transition-all"
+                        className="h-100 bg-primary transition-all"
                         style={{
                           width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
                           transition: 'width 0.3s ease'
@@ -96,9 +95,9 @@ export default function Avi() {
                         <div
                           className={`rounded-circle d-flex align-items-center justify-content-center fw-bold transition-all
                             ${currentStep > step.id 
-                              ? 'text-white' 
+                              ? 'bg-primary text-white' 
                               : currentStep === step.id 
-                                ? 'text-white' 
+                                ? 'bg-primary text-white' 
                                 : 'bg-white text-muted border border-2'
                             }`}
                           style={{

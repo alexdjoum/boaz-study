@@ -1,8 +1,9 @@
 interface StepProps {
+  onPrev: () => void;
   onNext: () => void;
 }
 
-export default function Step1Souscription({ onNext }: StepProps) {
+export default function Step1Souscription({ onNext, onPrev }: StepProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -85,7 +86,13 @@ export default function Step1Souscription({ onNext }: StepProps) {
         </div>
       </div>
 
-      <div className="d-flex justify-content-end mt-4">
+      <div className="d-flex justify-content-between mt-4">
+        <button 
+          type="button" 
+          className="btn btn-outline-secondary px-4 rounded-pill" 
+          onClick={onPrev}
+        >Précédent
+        </button>
         <button type="submit" className="btn btn-primary">
           Suivant
         </button>
