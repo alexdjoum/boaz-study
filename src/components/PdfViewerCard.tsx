@@ -195,7 +195,7 @@ export default function PdfViewerCard({
               title="Paramètres"
               type="button"
             >
-              <i className="bi bi-gear"></i>
+              <i className="bi bi-eye"></i>
             </button>
             <span className="fw-semibold">
               {document.fileName}

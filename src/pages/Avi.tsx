@@ -38,104 +38,106 @@ export default function Avi() {
   };
 
   return (
-    <div className="d-flex min-vh-100 bg-light">
-      <div style={{ width: '280px', flexShrink: 0 }} className="d-none d-md-block">
-        <Sidebar />
-      </div>
-      <div className="flex-grow-1">
-        <Header title="Obtenir mon AVI" />
-        <div className="p-4">
-          <div className="bg-white shadow rounded p-4">
-            <h2 className="text-center mb-4">Parcours à suivre</h2> 
-            {!started ? (
-              <>
-                <Stepper steps={steps} activeStep={currentStep} />
-                
-                <div className="d-flex justify-content-between mt-4">
-                  <button className="btn btn-secondary">
-                    Télécharger un résumé
-                  </button>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => setStarted(true)}
-                  >
-                    Commencer
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="mb-5">
-                  <div className="d-flex justify-content-between align-items-center position-relative px-4">
-                    <div 
-                      className="position-absolute top-50 start-0 translate-middle-y"
-                      style={{
-                        height: '2px',
-                        width: '100%',
-                        backgroundColor: '#e0e0e0',
-                        zIndex: 0,
-                        left: '0',
-                        right: '0'
-                      }}
-                    >
-                      <div 
-                        className="h-100 bg-primary transition-all"
-                        style={{
-                          width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
-                          transition: 'width 0.3s ease'
-                        }}
-                      />
-                    </div>
-                    {steps.map((step) => (
-                      <div 
-                        key={step.id}
-                        className="d-flex flex-column align-items-center position-relative"
-                        style={{ zIndex: 1, flex: 1 }}
-                      >
-                        <div
-                          className={`rounded-circle d-flex align-items-center justify-content-center fw-bold transition-all
-                            ${currentStep > step.id 
-                              ? 'bg-primary text-white' 
-                              : currentStep === step.id 
-                                ? 'bg-primary text-white' 
-                                : 'bg-white text-muted border border-2'
-                            }`}
-                          style={{
-                            width: '40px',
-                            height: '40px',
-                            transition: 'all 0.3s ease',
-                            boxShadow: currentStep === step.id ? '0 0 0 4px rgba(13, 110, 253, 0.2)' : 'none'
-                          }}
-                        >
-                          {currentStep > step.id ? (
-                            <i className="bi bi-check-lg"></i>
-                          ) : (
-                            <span>{String(step.id).padStart(2, '0')}</span>
-                          )}
-                        </div>
-                        <div 
-                          className={`mt-2 text-center small fw-semibold ${
-                            currentStep === step.id ? 'text-primary' : 'text-muted'
-                          }`}
-                          style={{ 
-                            maxWidth: '150px',
-                            fontSize: '0.85rem',
-                            transition: 'color 0.3s ease'
-                          }}
-                        >
-                          {step.title}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-4">
-                  {renderStep()}
-                </div>
-              </>
-            )}
-          </div>
+    <div className="container-fluid min-vh-100 bg-light p-0">
+      <div className="row g-0 h-100">
+        <div className="col-md-3 col-lg-2">
+          <Sidebar />
         </div>
+        <main className="col-md-9 col-lg-10">
+          <Header title="Obtenir mon AVI" />
+          <div className="bg-white shadow rounded m-3 p-4 mb-5" style={{minHeight: "92%"}}>
+            <div className="bg-white shadow rounded p-4">
+              <h2 className="text-center mb-4">Parcours à suivre</h2> 
+              {!started ? (
+                <>
+                  <Stepper steps={steps} activeStep={currentStep} />
+                  
+                  <div className="d-flex justify-content-between mt-4">
+                    <button className="btn btn-secondary">
+                      Télécharger un résumé
+                    </button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => setStarted(true)}
+                    >
+                      Commencer
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="mb-5">
+                    <div className="d-flex justify-content-between align-items-center position-relative px-4">
+                      <div 
+                        className="position-absolute top-50 start-0 translate-middle-y"
+                        style={{
+                          height: '2px',
+                          width: '100%',
+                          backgroundColor: '#e0e0e0',
+                          zIndex: 0,
+                          left: '0',
+                          right: '0'
+                        }}
+                      >
+                        <div 
+                          className="h-100 bg-primary transition-all"
+                          style={{
+                            width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
+                            transition: 'width 0.3s ease'
+                          }}
+                        />
+                      </div>
+                      {steps.map((step) => (
+                        <div 
+                          key={step.id}
+                          className="d-flex flex-column align-items-center position-relative"
+                          style={{ zIndex: 1, flex: 1 }}
+                        >
+                          <div
+                            className={`rounded-circle d-flex align-items-center justify-content-center fw-bold transition-all
+                              ${currentStep > step.id 
+                                ? 'bg-primary text-white' 
+                                : currentStep === step.id 
+                                  ? 'bg-primary text-white' 
+                                  : 'bg-white text-muted border border-2'
+                              }`}
+                            style={{
+                              width: '40px',
+                              height: '40px',
+                              transition: 'all 0.3s ease',
+                              boxShadow: currentStep === step.id ? '0 0 0 4px rgba(13, 110, 253, 0.2)' : 'none'
+                            }}
+                          >
+                            {currentStep > step.id ? (
+                              <i className="bi bi-check-lg"></i>
+                            ) : (
+                              <span>{String(step.id).padStart(2, '0')}</span>
+                            )}
+                          </div>
+                          <div 
+                            className={`mt-2 text-center small fw-semibold ${
+                              currentStep === step.id ? 'text-primary' : 'text-muted'
+                            }`}
+                            style={{ 
+                              maxWidth: '150px',
+                              fontSize: '0.85rem',
+                              transition: 'color 0.3s ease'
+                            }}
+                          >
+                            {step.title}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    {renderStep()}
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );

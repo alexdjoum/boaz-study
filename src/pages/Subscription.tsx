@@ -3,15 +3,6 @@ import Sidebar from "../components/layout/Sidebar";
 import Header from "../components/layout/Header";
 import { useNavigate } from "react-router-dom";
 
-interface TableRow {
-  id: number;
-  nom: string;
-  service: string;
-  date: string;
-  statut: "en-attente" | "valide" | "rejete";
-  document: string;
-}
-
 type FilterStatus = 
   | "en-preparation" 
   | "en-attente-paiement" 
@@ -158,90 +149,88 @@ export default function Subscription() {
         </div>
         <main className="col-md-9 col-lg-10">
           <Header title="Mes Souscriptions" />
-          <div className="container my-4">
-      <div className="card shadow-sm rounded-4 border-0 p-4">
-        <div className="d-flex flex-wrap gap-2 mb-4">
-          {filters.map(filter => (
-            <button
-              key={filter.id}
-              className={`btn rounded-pill px-4 d-flex align-items-center gap-2 ${
-                activeFilters.includes(filter.id)
-                  ? `btn-${filter.color} text-white`
-                  : `btn-outline-${filter.color}`
-              }`}
-              onClick={() => toggleFilter(filter.id)}
-            >
-              <span
-                className={`badge bg-${filter.color} rounded-circle p-0`}
-                style={{ width: "10px", height: "10px" }}
-              ></span>
-              {filter.label}
-            </button>
-          ))}
-        </div>
-        <div className="mb-4" style={{ maxWidth: "400px" }}>
-          <div className="input-group">
-            <span className="input-group-text bg-white border-end-0">
-              <i className="bi bi-search text-muted"></i>
-            </span>
-            <input
-              type="text"
-              className="form-control border-start-0 ps-0"
-              placeholder="Rechercher"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ boxShadow: "none" }}
-            />
+          <div className="bg-white shadow rounded m-3 p-4 mb-5" style={{minHeight: "92%"}}>
+            <div className="card shadow-sm rounded-4 border-0 p-4">
+              <div className="d-flex flex-wrap gap-2 mb-4">
+                {filters.map(filter => (
+                  <button
+                    key={filter.id}
+                    className={`btn rounded-pill px-4 d-flex align-items-center gap-2 ${
+                      activeFilters.includes(filter.id)
+                        ? `btn-${filter.color} text-white`
+                        : `btn-outline-${filter.color}`
+                    }`}
+                    onClick={() => toggleFilter(filter.id)}
+                  >
+                    <span
+                      className={`badge bg-${filter.color} rounded-circle p-0`}
+                      style={{ width: "10px", height: "10px" }}
+                    ></span>
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+              <div className="mb-4" style={{ maxWidth: "400px" }}>
+                <div className="input-group">
+                  <span className="input-group-text bg-white border-end-0">
+                    <i className="bi bi-search text-muted"></i>
+                  </span>
+                  <input
+                    type="text"
+                    className="form-control border-start-0 ps-0"
+                    placeholder="Rechercher"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    style={{ boxShadow: "none" }}
+                  />
+                </div>
+              </div>
+              <div className="table-responsive">
+                <table className="table table-borderless align-middle">
+                  <thead className="border-bottom">
+                    <tr>
+                      <th className="text-muted fw-normal small">Id</th>
+                      <th className="text-muted fw-normal small">Nom et prénom</th>
+                      <th className="text-muted fw-normal small">Service</th>
+                      <th className="text-muted fw-normal small">Date</th>
+                      <th className="text-muted fw-normal small">Statut</th>
+                      <th className="text-muted fw-normal small">Document associé</th>
+                      <th className="text-muted fw-normal small">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredSubscriptions.map((sub) => (
+                      <tr key={sub.id} className="border-bottom">
+                        <td className="py-3">{sub.id}</td>
+                        <td className="py-3">{sub.nom}</td>
+                        <td className="py-3">{sub.service}</td>
+                        <td className="py-3">{sub.date}</td>
+                        <td className="py-3">{getStatusBadge(sub.statut)}</td>
+                        <td className="py-3">
+                          <span className="text-muted small">
+                            <button className="btn btn-primary btn-sm rounded-pill px-3" onClick={handleViewAllDocuments}>
+                              Voir les documents
+                            </button>
+                          </span>
+                        </td>
+                        <td className="py-3">
+                          {renderActions(sub)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="d-flex justify-content-center gap-3 mt-4">
+                <button className="btn btn-secondary rounded-pill px-4">
+                  Retour
+                </button>
+                <button className="btn btn-primary rounded-pill px-4">
+                  Suivant
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="table-responsive">
-          <table className="table table-borderless align-middle">
-            <thead className="border-bottom">
-              <tr>
-                <th className="text-muted fw-normal small">Id</th>
-                <th className="text-muted fw-normal small">Nom et prénom</th>
-                <th className="text-muted fw-normal small">Service</th>
-                <th className="text-muted fw-normal small">Date</th>
-                <th className="text-muted fw-normal small">Statut</th>
-                <th className="text-muted fw-normal small">Document associé</th>
-                <th className="text-muted fw-normal small">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredSubscriptions.map((sub) => (
-                <tr key={sub.id} className="border-bottom">
-                  <td className="py-3">{sub.id}</td>
-                  <td className="py-3">{sub.nom}</td>
-                  <td className="py-3">{sub.service}</td>
-                  <td className="py-3">{sub.date}</td>
-                  <td className="py-3">{getStatusBadge(sub.statut)}</td>
-                  <td className="py-3">
-                    <span className="text-muted small">
-                      <button className="btn btn-primary btn-sm rounded-pill px-3" onClick={handleViewAllDocuments}>
-                        Voir les documents
-                      </button>
-                    </span>
-                  </td>
-                  <td className="py-3">
-                    {renderActions(sub)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Boutons de navigation */}
-        <div className="d-flex justify-content-center gap-3 mt-4">
-          <button className="btn btn-secondary rounded-pill px-4">
-            Retour
-          </button>
-          <button className="btn btn-primary rounded-pill px-4">
-            Suivant
-          </button>
-        </div>
-      </div>
-    </div>
         </main>
       </div>
     </div>

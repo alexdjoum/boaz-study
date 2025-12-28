@@ -47,18 +47,15 @@ export default function PdfDocumentList() {
           <div className="bg-white shadow rounded m-3 p-4 mb-5" style={{minHeight: "92%"}}>
             <div className="d-flex flex-wrap gap-2 mb-3">
               {documents.map((doc, index) => (
-              <div key={index} className="col-auto">
-                <PdfViewerCard
-                  document={doc}
-                  onDownload={() => handleDownload(doc)}
-                  onSettings={() => handleSettings(doc)}
-                />
-              </div>
-            ))}
+                <div key={index} className="col-auto">
+                  <PdfViewerCard
+                    document={doc}
+                    onDownload={() => handleDownload(doc)}
+                    onSettings={() => handleSettings(doc)}
+                  />
+                </div>
+              ))}
             </div>
-          </div>
-          <div className="row g-4">
-            
           </div>
         </main>
       </div>  
