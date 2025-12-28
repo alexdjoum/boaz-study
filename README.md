@@ -56,6 +56,7 @@ Copiez cette URL et collez-la dans votre navigateur pour accéder à l'applicati
 - ✅ Formulaires multi-étapes
 - ✅ Interface responsive
 - ✅ Preuve de financement
+- ✅ Listes des documents
 ```
 
 ## 📂 Structure du projet
@@ -75,10 +76,11 @@ boaz-study/
 
 ## 🌐 Navigation
 
-- `/` - Page d'accueil
+- `/` - Etapes de souscriptions
 - `/login` - Page de connexion
 - `/avi` - Parcours de souscription
 - `/subscriptions` - Liste des souscriptions
+- `/documents` - Liste des documents
 
 
 
